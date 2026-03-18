@@ -31,11 +31,7 @@
 \newcommand{\tarea}{Problem Set N.º\,1}
 \newcommand{\periodo}{2026-1}
 
-\newcommand{\autores}{%
-    Sol\\[4pt]
-    Sara\\[4pt]
-    Daniel%
-}
+\newcommand{\autor}{Daniel Soto Villada}
 
 \newcommand{\institucion}{Universidad de Antioquia}
 \newcommand{\facultad}{Facultad de Ciencias Exactas y Naturales}
@@ -58,7 +54,7 @@
     \centering
 
     % Logo
-    \includegraphics[width=0.28\textwidth]{logoUdea.png}\\[0.8cm]
+    %\includegraphics[width=0.28\textwidth]{logoUdea.png}\\[0.8cm]
 
     % Línea decorativa superior
     {\color{udea}\rule{\linewidth}{1.5pt}}\\[0.4cm]
@@ -75,9 +71,8 @@
 
     {\color{udea}\rule{\linewidth}{0.8pt}}\\[0.8cm]
 
-    % Bloque de autores (centrado)
-    {\small\bfseries Autores}\\[0.4cm]
-    {\small \autores}
+    {\small\bfseries Autor}\\[0.4cm]
+    {\small \autor}
 
     \vfill
 
@@ -97,6 +92,10 @@
 \newpage                        % el cuerpo empieza en página nueva
 
 % ─── CUERPO DEL DOCUMENTO ────────────────────────────────────────────────────
+
+
+%#################################################################################-%
+%#################################################################################-%
 \section{Problema 1}
 
 Sea el vector de posición definido en coordenadas cartesianas como $\vec{r} = (x, y, z)$ y su
@@ -159,7 +158,7 @@ $$
 $$
 
 % ── Relevancia ────────────────────────────────────────────────────────────────
-\subsection{Relevancia en Mecánica Celeste}
+\subsection{Relevancia}
 
 \begin{enumerate}
     \item \textbf{Fuerzas centrales.} Muchas fuerzas en Mecánica Celeste y Electrodinámica
@@ -171,6 +170,390 @@ $$
     \item \textbf{Campos conservativos.} Es la base para derivar campos vectoriales a partir
           de potenciales escalares, lo que simplifica la resolución de problemas de dinámica
           de $N$ cuerpos.
+\end{enumerate}
+
+%#################################################################################-%
+%#################################################################################-%
+
+\section{Problema 2}
+
+En coordenadas cartesianas, sea la función escalar $f(\vec{r}) = \frac{1}{r}$, donde $r = |\vec{r}| = (x^2 + y^2 + z^2)^{1/2}$ es la magnitud del vector de posición $\vec{r} = (x, y, z)$.
+
+\begin{enumerate}[a)]
+    \item Calcule la derivada parcial $\frac{\partial}{\partial x} \left( \frac{1}{r} \right)$. Sugerencia: use la definición de $r$ en términos de sus componentes cartesianas.
+    \item Construya el vector gradiente $\nabla \left( \frac{1}{r} \right)$ y demuestre que, para todo $r \neq 0$, se cumple que $\nabla \left( \frac{1}{r} \right) = -\frac{\vec{r}}{r^3}$.
+\end{enumerate}
+
+\subsection{Solución}
+
+\subsubsection*{Parte (a): Cálculo de la derivada parcial}
+
+Definimos la función como $f(r) = r^{-1}$. La derivada parcial respecto a $x$ es:
+
+$$ \frac{\partial f}{\partial x} = \frac{df}{dr} \frac{\partial r}{\partial x} $$
+
+Primero, calculamos la derivada de $f$ respecto a $r$:
+$$ \frac{df}{dr} = \frac{d}{dr} (r^{-1}) = -r^{-2} = -\frac{1}{r^2} $$
+
+Segundo, utilizamos el resultado del problema anterior para la variación de $r$ respecto a $x$:
+$$ \frac{\partial r}{\partial x} = \frac{\partial}{\partial x} (x^2 + y^2 + z^2)^{1/2} = \frac{1}{2}(x^2 + y^2 + z^2)^{-1/2} \cdot (2x) = \frac{x}{r} $$
+
+Finalmente, combinamos ambos resultados:
+$$ \frac{\partial}{\partial x} \left( \frac{1}{r} \right) = \left( -\frac{1}{r^2} \right) \left( \frac{x}{r} \right) = -\frac{x}{r^3} $$
+
+\subsubsection*{Parte (b): Construcción del gradiente y demostración}
+
+$$ \nabla \phi = \left( \frac{\partial \phi}{\partial x}, \frac{\partial \phi}{\partial y}, \frac{\partial \phi}{\partial z} \right) $$
+
+Dada la simetría de la función $1/r$, las derivadas respecto a $y$ y $z$ siguen exactamente la misma forma que la obtenida para $x$:
+$$ \frac{\partial}{\partial y} \left( \frac{1}{r} \right) = -\frac{y}{r^3} $$
+$$ \frac{\partial}{\partial z} \left( \frac{1}{r} \right) = -\frac{z}{r^3} $$
+
+
+Sustituyendo las tres componentes en la definición del gradiente:
+$$ \nabla \left( \frac{1}{r} \right) = \left( -\frac{x}{r^3}, -\frac{y}{r^3}, -\frac{z}{r^3} \right) $$
+
+Podemos factorizar el término escalar común $-\frac{1}{r^3}$:
+$$ \nabla \left( \frac{1}{r} \right) = -\frac{1}{r^3} (x, y, z) $$
+
+Como el vector $(x, y, z)$ es por definición el vector de posición $\vec{r}$, llegamos al resultado final:
+$$ \nabla \left( \frac{1}{r} \right) = -\frac{\vec{r}}{r^3} $$
+
+Para expresar esto en términos del vector unitario $\hat{r} = \frac{\vec{r}}{r}$, también podemos escribir:
+$$ \nabla \left( \frac{1}{r} \right) = -\frac{1}{r^2} \hat{r} $$
+
+\subsection{Relevancia}
+
+\begin{enumerate}
+    \item \textbf{Potencial Gravitacional:} La ley de gravitación de Newton establece que la fuerza es central y conservativa. El potencial gravitacional de una masa puntual $M$ es $\Phi = -G \frac{M}{r}$. La aceleración de la gravedad se obtiene como $\vec{g} = -\nabla \Phi$. Al aplicar el resultado de este problema, vemos que $\vec{g} = -GM \nabla(1/r) = -G \frac{M}{r^3} \vec{r}$, que es la forma vectorial de la \textbf{ley del inverso del cuadrado}.
+
+    \item \textbf{Campos Conservativos:} El hecho de que una fuerza pueda escribirse como el gradiente de un potencial escalar ($1/r$) garantiza la conservación de la energía mecánica en el sistema de dos cuerpos.
+\end{enumerate}
+
+
+%#################################################################################-%
+%#################################################################################-%
+
+\section{Problema 3}
+
+Use el operador gradiente en coordenadas esféricas para una función escalar $\phi(r, \theta, \varphi)$, definido como:
+$$ \nabla \phi = \frac{\partial \phi}{\partial r} \hat{e}_r + \frac{1}{r} \frac{\partial \phi}{\partial \theta} \hat{e}_\theta + \frac{1}{r \sin \theta} \frac{\partial \phi}{\partial \varphi} \hat{e}_\varphi $$
+
+\begin{enumerate}[a)]
+    \item Para la función $\phi(r, \theta, \varphi) = \frac{1}{r}$, calcule $\nabla \phi$.
+    \item Compare con el resultado obtenido en el problema 2 (en coordenadas cartesianas) y explique por qué una función puramente radial simplifica el cálculo en problemas de fuerzas centrales.
+\end{enumerate}
+
+\subsection{Solución}
+
+\subsubsection*{Parte (a): Cálculo del gradiente en esféricas}
+
+Dada la función escalar $\phi(r, \theta, \varphi) = \frac{1}{r}$, observamos que esta función depende exclusivamente de la coordenada radial $r$ y es independiente de los ángulos $\theta$ (colatitud) y $\varphi$ (azimut).
+
+\begin{itemize}
+    \item \textbf{Componente radial:}
+    
+    $$ \frac{\partial \phi}{\partial r} = \frac{\partial}{\partial r} \left( \frac{1}{r} \right) = -\frac{1}{r^2} $$
+
+    \item \textbf{Componente polar ($\theta$):}
+    
+    Como $\phi$ no contiene la variable $\theta$:
+    
+    $$ \frac{1}{r} \frac{\partial \phi}{\partial \theta} = \frac{1}{r} (0) = 0 $$
+
+    \item \textbf{Componente azimutal ($\varphi$):}
+    
+    Como $\phi$ no contiene la variable $\varphi$:
+    
+    $$ \frac{1}{r \sin \theta} \frac{\partial \phi}{\partial \varphi} = \frac{1}{r \sin \theta} (0) = 0 $$
+\end{itemize}
+
+Sustituyendo estos valores en la expresión del gradiente:
+$$ \nabla \left( \frac{1}{r} \right) = -\frac{1}{r^2} \hat{e}_r + 0 \hat{e}_\theta + 0 \hat{e}_\varphi $$
+$$ \nabla \left( \frac{1}{r} \right) = -\frac{1}{r^2} \hat{e}_r $$
+
+\subsubsection*{Parte (b): Comparación y simplificación en problemas centrales}
+
+En el problema 2, se demostró en coordenadas cartesianas que $\nabla (1/r) = -\frac{\vec{r}}{r^3}$. 
+Para comparar, recordamos que el vector de posición se define como $\vec{r} = r \hat{e}_r$. Al sustituir esto en el resultado cartesiano obtenemos:
+$$ -\frac{\vec{r}}{r^3} = -\frac{r \hat{e}_r}{r^3} = -\frac{1}{r^2} \hat{e}_r $$
+Ambos resultados son idénticos, lo que confirma la \textbf{invarianza del operador gradiente} bajo transformaciones de coordenadas.
+
+El uso de una función puramente radial simplifica el cálculo en problemas de fuerzas centrales por las siguientes razones:
+\begin{itemize}
+    \item \textbf{Anulación de términos:} Al depender solo de $r$, las derivadas respecto a las coordenadas angulares ($\theta, \varphi$) desaparecen automáticamente, reduciendo el gradiente a un solo término.
+    \item \textbf{Alineación natural:} El resultado apunta directamente en la dirección del vector unitario radial $\hat{e}_r$, lo cual coincide con la línea de acción de la fuerza gravitacional.
+    \item \textbf{Eficiencia algebraica:} Evita la manipulación de raíces cuadradas y potencias de componentes $(x, y, z)$ que suelen aparecer en cartesianas, permitiendo una transición directa del potencial escalar a la aceleración vectorial.
+\end{itemize}
+
+\subsection{Relevancia}
+
+\begin{enumerate}
+    \item \textbf{Leyes de Kepler:} La mayoría de los cuerpos celestes se modelan como masas puntuales donde el potencial gravitatorio depende únicamente de la distancia $r$. Las coordenadas esféricas permiten derivar las ecuaciones de movimiento de forma mucho más directa, facilitando la deducción de las órbitas cónicas.
+    
+    \item \textbf{Estabilidad Numérica:} En astrodinámica computacional, entender estas propiedades permite elegir sistemas de coordenadas que minimizan los errores de redondeo y simplifican la integración de trayectorias complejas.
+\end{enumerate}
+
+%#################################################################################-%
+%#################################################################################-%
+
+\section{Problema 4}
+
+Sean $\vec{r}(t)$ y $\vec{v}(t)$ vectores dependientes del tiempo, con $\vec{v} = \dot{\vec{r}}$.
+
+\begin{enumerate}[a)]
+    \item Demuestre que
+    $$ \frac{d}{dt}(\vec{r} \cdot \vec{v}) = \dot{\vec{r}} \cdot \vec{v} + \vec{r} \cdot \dot{\vec{v}} $$
+    \item Defina el momento angular $\vec{L} = \vec{r} \times \vec{v}$. Demuestre que
+    $$ \frac{d\vec{L}}{dt} = \vec{r} \times \dot{\vec{v}} $$
+    \item Justifique algebraicamente por qué el término $\dot{\vec{r}} \times \vec{v}$ desaparece.
+\end{enumerate}
+
+\subsection{Solución}
+
+\subsubsection*{Parte (a): Derivada del producto escalar}
+
+$$ \frac{d}{dt}(\vec{r} \cdot \vec{v}) = \frac{d\vec{r}}{dt} \cdot \vec{v} + \vec{r} \cdot \frac{d\vec{v}}{dt} $$
+
+Utilizando la notación de punto para las derivadas temporales ($\dot{\vec{r}}$ y $\dot{\vec{v}}$), obtenemos la expresión requerida:
+$$ \frac{d}{dt}(\vec{r} \cdot \vec{v}) = \dot{\vec{r}} \cdot \vec{v} + \vec{r} \cdot \dot{\vec{v}} $$
+
+Físicamente, el primer término $\dot{\vec{r}} \cdot \vec{v}$ es equivalente a $\vec{v} \cdot \vec{v} = v^2$, mientras que el segundo término involucra la aceleración de la partícula ($\dot{\vec{v}} = \vec{a}$).
+
+\subsubsection*{Parte (b): Derivada del momentum angular}
+
+$$ \frac{d\vec{L}}{dt} = \frac{d}{dt}(\vec{r} \times \vec{v}) = \frac{d\vec{r}}{dt} \times \vec{v} + \vec{r} \times \frac{d\vec{v}}{dt} $$
+
+Sustituyendo con la notación de punto:
+$$ \frac{d\vec{L}}{dt} = \dot{\vec{r}} \times \vec{v} + \vec{r} \times \dot{\vec{v}} $$
+
+\subsubsection*{Parte (c): Justificación de la desaparición del término $\dot{\vec{r}} \times \vec{v}$}
+
+$$ \dot{\vec{r}} \times \vec{v} = \vec{v} \times \vec{v} = |\vec{v}| |\vec{v}| \sin(0) \hat{n} = \vec{0} $$
+
+Por lo tanto, el término desaparece y queda demostrado que:
+$$ \frac{d\vec{L}}{dt} = \vec{r} \times \dot{\vec{v}} $$
+
+\subsection{Relevancia}
+
+\begin{enumerate}
+    \item \textbf{Segunda Ley de Kepler:} La constancia del momentum angular ($\dot{\vec{L}} = 0$) implica que el movimiento de un planeta ocurre en un plano fijo y que el radio vector barre áreas iguales en tiempos iguales.
+    \item \textbf{Fuerzas Centrales:} En un campo de fuerza central (como la gravedad), la aceleración $\dot{\vec{v}}$ es siempre paralela al vector de posición $\vec{r}$. Como consecuencia, el producto cruz $\vec{r} \times \dot{\vec{v}}$ es cero, lo que garantiza que el momentum angular se conserve en el tiempo.
+\end{enumerate}
+
+
+%#################################################################################-%
+%#################################################################################-%
+
+\section{Problema 5}
+
+Sea $U(\vec{r})$ un potencial escalar que depende únicamente de la posición $\vec{r}$, y sea $\vec{r}(t)$ una trayectoria definida en el espacio tridimensional en función del tiempo $t$.
+
+\begin{enumerate}[a)]
+    \item Escriba la derivada total $\frac{dU}{dt}$ utilizando la regla de la cadena multivariada en términos de las derivadas parciales $\frac{\partial U}{\partial x}$, $\frac{\partial U}{\partial y}$, $\frac{\partial U}{\partial z}$ y las componentes de la velocidad $\dot{x}, \dot{y}, \dot{z}$.
+    \item Reescriba el resultado utilizando notación vectorial y demuestre que $\frac{dU}{dt} = \nabla U(\vec{r}(t)) \cdot \dot{\vec{r}}(t)$.
+\end{enumerate}
+
+\subsection{Solución}
+
+\subsubsection*{Parte (a): Aplicación de la regla de la cadena multivariada}
+
+Dado que el potencial $U$ depende de la posición $\vec{r} = (x, y, z)$, y a su vez cada una de estas coordenadas es una función del tiempo $t$ ($x(t), y(t), z(t)$), podemos expresar a $U$ como una función compuesta del tiempo: $U(x(t), y(t), z(t))$.
+
+$$ \frac{dU}{dt} = \frac{\partial U}{\partial x} \frac{dx}{dt} + \frac{\partial U}{\partial y} \frac{dy}{dt} + \frac{\partial U}{\partial z} \frac{dz}{dt} $$
+
+o
+
+$$ \frac{dU}{dt} = \frac{\partial U}{\partial x} \dot{x} + \frac{\partial U}{\partial y} \dot{y} + \frac{\partial U}{\partial z} \dot{z} $$
+
+
+\subsubsection*{Parte (b): Notación vectorial y demostración}
+
+\begin{itemize}
+
+	\item \textbf{El Gradiente del Potencial ($\nabla U$):} 
+	
+$$ \nabla U = \left( \frac{\partial U}{\partial x}, \frac{\partial U}{\partial y}, \frac{\partial U}{\partial z} \right) $$
+
+	\item \textbf{El Vector Velocidad ($\dot{\vec{r}}$):} 
+	
+$$ \dot{\vec{r}} = (\dot{x}, \dot{y}, \dot{z}) $$
+
+\end{itemize}
+
+Producto escalar entre dos vectores $\vec{A} \cdot \vec{B} = \sum_{i} A_i B_i$, observamos que la estructura de la derivada total obtenida en el inciso (a) coincide exactamente con esta operación:
+
+$$ \frac{dU}{dt} = \left( \frac{\partial U}{\partial x}, \frac{\partial U}{\partial y}, \frac{\partial U}{\partial z} \right) \cdot (\dot{x}, \dot{y}, \dot{z}) $$
+
+Por lo tanto, llegamos a la identidad vectorial:
+
+$$ \frac{dU}{dt} = \nabla U(\vec{r}(t)) \cdot \dot{\vec{r}}(t) $$
+
+Esta expresión compacta nos dice que la tasa de cambio del potencial es igual a la proyección del gradiente del campo sobre el vector velocidad de la partícula.
+
+\subsection{Relevancia en física}
+
+
+\begin{enumerate}
+    \item \textbf{Conservación de la Energía:} Este cálculo es el paso matemático necesario para demostrar que la energía mecánica se conserva. Al multiplicar la ecuación de movimiento ($m\vec{a} = \vec{F}$) por la velocidad, el término de la fuerza conservativa ($\vec{F} \cdot \vec{v} = -\nabla U \cdot \vec{v}$) se convierte, gracias a este problema, en $-dU/dt$, permitiendo la integración directa de la energía.
+    \item \textbf{Trabajo y Potencia:} Define la potencia mecánica de una fuerza conservativa. La potencia es $P = \vec{F} \cdot \vec{v}$; si la fuerza es central y conservativa, la potencia es simplemente el negativo de la derivada temporal del potencial.
+\end{enumerate}
+
+%#################################################################################-%
+%#################################################################################-%
+
+\section{Problema 6}
+
+En un sistema de $N$ cuerpos, defina la distancia relativa entre las partículas $j$ e $i$ como $r_{ji} = |\vec{r}_j - \vec{r}_i|$.
+
+\begin{enumerate}[a)]
+    \item Calcule el gradiente de la función escalar $\frac{1}{r_{ji}}$ con respecto a las coordenadas de la partícula $j$, denotado como $\nabla_j \left( \frac{1}{r_{ji}} \right)$.
+    \item Calcule el gradiente de la misma función con respecto a las coordenadas de la partícula $i$, denotado como $\nabla_i \left( \frac{1}{r_{ji}} \right)$.
+    \item Establezca la relación exacta entre ambos resultados y exprésela de forma compacta.
+\end{enumerate}
+
+\subsection{Solución}
+
+\subsubsection*{Parte (a): Gradiente respecto a la partícula $j$}
+
+Definimos el vector de posición relativa que apunta de $i$ hacia $j$ como $\vec{r}_{ji} = \vec{r}_j - \vec{r}_i$. Al calcular el gradiente $\nabla_j$, tratamos a $\vec{r}_i$ como un vector constante.
+
+La variación de la magnitud $r_{ji}$ respecto a un cambio en la posición de la partícula $j$ es idéntica al gradiente radial simple estudiado en problemas anteriores:
+$$ \nabla_j r_{ji} = \frac{\vec{r}_{ji}}{r_{ji}} = \hat{r}_{ji} $$
+
+Aplicando la regla de la cadena para la función recíproca:
+$$ \nabla_j \left( \frac{1}{r_{ji}} \right) = \frac{d}{dr_{ji}} \left( r_{ji}^{-1} \right) \nabla_j r_{ji} $$
+$$ \nabla_j \left( \frac{1}{r_{ji}} \right) = \left( -\frac{1}{r_{ji}^2} \right) \left( \frac{\vec{r}_{ji}}{r_{ji}} \right) $$
+$$ \nabla_j \left( \frac{1}{r_{ji}} \right) = -\frac{\vec{r}_{ji}}{r_{ji}^3} $$
+
+Este resultado indica que el gradiente respecto a la partícula que siente el potencial apunta hacia la otra partícula.
+
+\subsubsection*{Parte (b): Gradiente respecto a la partícula $i$}
+
+Ahora calculamos el gradiente $\nabla_i$, tratando a $\vec{r}_j$ como constante. Notamos que en la definición $r_{ji} = \sqrt{(x_j-x_i)^2 + (y_j-y_i)^2 + (z_j-z_i)^2}$, las coordenadas de la partícula $i$ entran con signo negativo.
+
+Calculamos la derivada parcial de $r_{ji}$ respecto a $x_i$:
+$$ \frac{\partial r_{ji}}{\partial x_i} = \frac{1}{2 r_{ji}} \cdot 2(x_j - x_i) \cdot (-1) = -\frac{x_j - x_i}{r_{ji}} = \frac{x_i - x_j}{r_{ji}} $$
+
+Al generalizar para las tres componentes:
+$$ \nabla_i r_{ji} = \frac{\vec{r}_i - \vec{r}_j}{r_{ji}} = -\frac{\vec{r}_{ji}}{r_{ji}} $$
+
+Finalmente, el gradiente de la función recíproca es:
+$$ \nabla_i \left( \frac{1}{r_{ji}} \right) = \left( -\frac{1}{r_{ji}^2} \right) \nabla_i r_{ji} = \left( -\frac{1}{r_{ji}^2} \right) \left( -\frac{\vec{r}_{ji}}{r_{ji}} \right) $$
+$$ \nabla_i \left( \frac{1}{r_{ji}} \right) = \frac{\vec{r}_{ji}}{r_{ji}^3} $$
+
+\subsubsection*{Parte (c): Relación entre gradientes}
+
+Comparando los resultados obtenidos en (a) y (b), observamos que los vectores resultantes tienen la misma magnitud y dirección, pero sentidos opuestos:
+$$ \nabla_j \left( \frac{1}{r_{ji}} \right) = -\frac{\vec{r}_{ji}}{r_{ji}^3} \quad , \quad \nabla_i \left( \frac{1}{r_{ji}} \right) = \frac{\vec{r}_{ji}}{r_{ji}^3} $$
+
+La relación compacta es:
+$$ \nabla_j \left( \frac{1}{r_{ji}} \right) = -\nabla_i \left( \frac{1}{r_{ji}} \right) $$
+
+Esta simetría es una propiedad intrínseca de las funciones que dependen únicamente de la distancia relativa entre dos puntos.
+
+\subsection{Relevancia}
+
+\begin{enumerate}
+    \item \textbf{Tercera Ley de Newton:} La fuerza ejercida por la partícula $j$ sobre la partícula $i$ es $\vec{F}_{ij} = -G m_i m_j \nabla_i (1/r_{ji})$. Debido a la relación demostrada, se cumple automáticamente que $\vec{F}_{ij} = -\vec{F}_{ji}$, satisfaciendo el postulado de acción y reacción.
+    \item \textbf{Conservación del Momentum Lineal:} Esta simetría en las derivadas del potencial garantiza que la suma de las fuerzas internas en un sistema de $N$ cuerpos sea nula, lo que implica que el centro de masa se mueve de forma inercial.
+\end{enumerate}
+
+
+%#################################################################################-%
+%#################################################################################-%
+
+\section{Problema 7}
+
+\textbf{Reducción de ecuaciones diferenciales}
+
+Escriba el sistema de ecuaciones diferenciales reducido correspondiente a las siguientes ecuaciones diferenciales de segundo orden, identificando las variables auxiliares $Y_i$ y las funciones correspondientes $f_i$. En cada caso, aquellas variables o símbolos que no se identifican como la función dependiente o la variable independiente se asumen constantes:
+
+\begin{enumerate}[a)]
+    \item $z(1-z) \frac{d^2w}{dz^2} + [c - (a+b+1)z] \frac{dw}{dz} - abw = 0$
+    \item $\frac{d^2y}{dt^2} = 6y^2 + t$
+    \item $\frac{d^2y}{dt^2} = \frac{1}{y} \left( \frac{dy}{dt} \right)^2 - \frac{1}{t} \frac{dy}{dt} + \frac{1}{t} (\alpha y^2 + \beta) + \gamma y^3 + \frac{\delta}{y}$
+    \item $x^2 \frac{d^2y}{dx^2} + ax \frac{dy}{dx} + by = 0$
+\end{enumerate}
+
+\subsection{Solución}
+
+\subsubsection*{Parte (a): Ecuación hipergeométrica de Gauss}
+
+La ecuación es:
+$$ z(1-z) \frac{d^2w}{dz^2} + [c - (a+b+1)z] \frac{dw}{dz} - abw = 0 $$
+Aquí la variable independiente es $z$ y la dependiente es $w$.
+
+\textbf{Definición de variables auxiliares:}
+$$ Y_0 = w $$
+$$ Y_1 = \frac{dw}{dz} $$
+
+\textbf{Construcción del sistema reducido:}
+Derivamos cada variable auxiliar con respecto a $z$:
+\begin{enumerate}
+    \item $f_0(z, Y_0, Y_1) = \frac{dY_0}{dz} = Y_1$
+    \item Para obtener $f_1$, despejamos la segunda derivada $\frac{d^2w}{dz^2}$ (que es $\frac{dY_1}{dz}$) de la ecuación original:
+    $$ z(1-z) \frac{dY_1}{dz} = ab Y_0 - [c - (a+b+1)z] Y_1 $$
+    $$ f_1(z, Y_0, Y_1) = \frac{ab Y_0 - [c - (a+b+1)z] Y_1}{z(1-z)} $$
+\end{enumerate}
+
+\subsubsection*{Parte (b): Ecuación no lineal}
+
+La ecuación es:
+$$ \frac{d^2y}{dt^2} = 6y^2 + t $$
+Variable independiente: $t$. Variable dependiente: $y$.
+
+\textbf{Definición de variables auxiliares:}
+$$ Y_0 = y $$
+$$ Y_1 = \dot{y} $$
+
+\textbf{Construcción del sistema reducido:}
+\begin{enumerate}
+    \item $f_0(t, Y_0, Y_1) = \dot{Y}_0 = Y_1$
+    \item $f_1(t, Y_0, Y_1) = \dot{Y}_1 = 6Y_0^2 + t$
+\end{enumerate}
+
+\subsubsection*{Parte (c): Ecuación de Painlevé}
+
+La ecuación es:
+$$ \frac{d^2y}{dt^2} = \frac{1}{y} \left( \frac{dy}{dt} \right)^2 - \frac{1}{t} \frac{dy}{dt} + \frac{1}{t} (\alpha y^2 + \beta) + \gamma y^3 + \frac{\delta}{y} $$
+
+\textbf{Definición de variables auxiliares:}
+$$ Y_0 = y $$
+$$ Y_1 = \dot{y} $$
+
+\textbf{Construcción del sistema reducido:}
+Siguiendo la misma lógica de identificación:
+\begin{enumerate}
+    \item $f_0(t, Y_0, Y_1) = Y_1$
+    \item $f_1(t, Y_0, Y_1) = \frac{Y_1^2}{Y_0} - \frac{Y_1}{t} + \frac{\alpha Y_0^2 + \beta}{t} + \gamma Y_0^3 + \frac{\delta}{Y_0}$
+\end{enumerate}
+
+\subsubsection*{Parte (d): Ecuación de Euler-Cauchy}
+
+La ecuación es:
+$$ x^2 \frac{d^2y}{dx^2} + ax \frac{dy}{dx} + by = 0 $$
+Variable independiente: $x$. Variable dependiente: $y$.
+
+\textbf{Definición de variables auxiliares:}
+$$ Y_0 = y $$
+$$ Y_1 = \frac{dy}{dx} $$
+
+\textbf{Construcción del sistema reducido:}
+\begin{enumerate}
+    \item $f_0(x, Y_0, Y_1) = Y_1$
+    \item Despejamos la segunda derivada $\frac{d^2y}{dx^2}$ (que es $\frac{dY_1}{dx}$):
+    $$ x^2 \frac{dY_1}{dx} = -ax Y_1 - b Y_0 $$
+    $$ f_1(x, Y_0, Y_1) = \frac{-ax Y_1 - b Y_0}{x^2} $$
+\end{enumerate}
+
+\section{Relevancia}
+
+
+\begin{enumerate}
+    \item \textbf{Solución al Problema de los N-cuerpos:} Para sistemas con $N > 2$ no existen soluciones analíticas generales en términos de funciones elementales (Teorema de Bruns). Por tanto, la única vía práctica es la integración numérica, la cual requiere obligatoriamente reducir las $3N$ ecuaciones vectoriales de segundo orden a un sistema de $6N$ ecuaciones de primer orden.
+    \item \textbf{Vectores de Estado:} Esta técnica permite definir el \textbf{vector de estado} de una partícula o sistema astronómico, que agrupa tanto la posición como la velocidad, permitiendo describir la evolución del sistema en el espacio de fase.
+    \item \textbf{Implementación de Algoritmos:} Algoritmos fundamentales como Runge-Kutta, Leapfrog o el paquete \texttt{ODEPACK} (utilizado por \texttt{odeint}) operan exclusivamente sobre estas formas reducidas, permitiendo calcular trayectorias de planetas, asteroides o naves espaciales con alta precisión.
 \end{enumerate}
 
 
