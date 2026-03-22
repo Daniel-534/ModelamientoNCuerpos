@@ -1,0 +1,90 @@
+\documentclass[a4paper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage[margin=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{booktabs}
+
+
+
+% cabecera
+\pagestyle{fancy}
+\fancyhead[l]{Mecánica Celeste}
+\fancyhead[c]{Proyecto Sgr A*}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} % linea horizontal
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  {\Large Universidad de Antioquia\par}
+  \vspace{2cm}
+  {\huge\bfseries Mecánica Celeste\par}
+  \vspace{0.4cm}
+  {\Large Notas parte 1 Proyecto Sgr A*\par}
+  \vspace{2.5cm}
+  {\large Autor:\par}
+  \vspace{0.2cm}
+  {\large Daniel Soto Villada\par}
+  {\large Estudiante de Astronomía\par}
+  \vfill
+  {\large \today\par}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introducción al Centro Galáctico y Sagitario A*}
+
+El Centro Galáctico representa el laboratorio astrofísico más cercano para el estudio de los fenómenos de gravedad extrema asociados a agujeros negros supermasivos (SMBH). En el corazón de la Vía Láctea se encuentra Sagitario A* (Sgr A*), un objeto compacto cuya naturaleza como agujero negro ha sido confirmada mediante el monitoreo ininterrumpido de órbitas estelares durante más de dos décadas \cite{gillessen2017update}. Este núcleo galáctico se localiza aproximadamente a 8 kpc de la Tierra y alberga una masa concentrada de cerca de $4.28 \times 10^6 M_\odot$ \cite{gillessen2017update, ciurlo2025sagittarius}.
+
+\subsection{Naturaleza y masa del agujero negro central}
+La identificación de Sgr A* como un SMBH se basa en la observación de que una enorme masa está confinada en un volumen extremadamente pequeño, lo que descarta alternativas como cúmulos de remanentes estelares o bolas de fermiones degenerados, los cuales serían dinámicamente inestables en tales densidades \cite{ciurlo2025sagittarius}. Datos obtenidos mediante interferometría de muy larga base (VLBI) han permitido incluso reconstruir imágenes de la sombra del agujero negro, confirmando las dimensiones del horizonte de eventos predichas por la Relatividad General \cite{ciurlo2025sagittarius}.
+
+\subsection{El entorno dinámico y el cúmulo estelar S}
+Rodeando a Sgr A* se encuentra el \textit{Cúmulo S}, una población de estrellas jóvenes (entre 6 y 20 millones de años) que se mueven en órbitas altamente excéntricas y de corto periodo \cite{ciurlo2025sagittarius}. Estas estrellas actúan como partículas de prueba ideales para mapear el potencial gravitatorio central. Entre ellas, la estrella S2 (o S0-2) destaca por completar una órbita cada 16 años, permitiendo mediciones precisas de la masa del agujero negro y la distancia al Centro Galáctico ($R_0$) \cite{gillessen2017update}.
+
+\section{Mecánica Celeste y el Problema de los N-Cuerpos}
+
+El análisis de las trayectorias estelares en el Centro Galáctico es, en esencia, una aplicación compleja del problema de los N-cuerpos. En este sistema, Sgr A* domina el potencial gravitatorio, pero la interacción entre las estrellas y la posible presencia de masa extendida (materia oscura o remanentes estelares) introducen perturbaciones significativas \cite{gillessen2017update, ali2020kinematic}.
+
+\subsection{Modelado de órbitas y parámetros dinámicos}
+El ajuste de órbitas estelares requiere determinar simultáneamente parámetros del potencial y elementos orbitales clásicos. Un ajuste que involucre $n$ estrellas puede llegar a tener $7 + 6 \times n$ parámetros libres, incluyendo la masa central, la posición y velocidad del SMBH, y los seis elementos orbitales de cada estrella (semieje mayor $a$, excentricidad $e$, inclinación $i$, longitud del nodo ascendente $\Omega$, argumento del pericentro $\omega$ y época de paso por el pericentro $t_P$) \cite{gillessen2017update}. Para resolver este problema de alta dimensionalidad, se utilizan métodos de minimización numérica y cadenas de Markov Monte Carlo (MCMC) \cite{gillessen2017update}.
+
+\subsection{Relatividad General y precesión orbital}
+Las estrellas más cercanas a Sgr A* alcanzan velocidades de hasta un 2.7\% de la velocidad de la luz, lo que permite observar efectos relativistas. Se han detectado con éxito el corrimiento al rojo gravitacional y la precesión de Schwarzschild en la órbita de S2 \cite{ciurlo2025sagittarius}. La precesión de Schwarzschild provoca que el periapsis de la órbita rote gradualmente en la dirección del movimiento, un fenómeno que no puede ser explicado por la mecánica Newtoniana clásica y que sirve como una prueba crítica de la teoría de Einstein en campos fuertes \cite{ciurlo2025sagittarius}.
+
+\section{Estructura Cinemática y Organización de Discos}
+
+A pesar de que inicialmente se pensaba que las órbitas del cúmulo S estaban orientadas de forma aleatoria, estudios recientes han revelado una organización cinemática sorprendente. El cúmulo S no es un sistema isotrópico, sino que presenta una estructura coherente \cite{ali2020kinematic}.
+
+\subsection{La configuración en forma de X (X-shape)}
+El análisis de 112 estrellas en el cúmulo S indica que estas se organizan preferencialmente en dos discos casi perpendiculares entre sí, orientados a aproximadamente $\pm 45^\circ$ respecto al plano galáctico \cite{ali2020kinematic}. Estos discos se ven mayoritariamente de canto desde nuestra línea de visión. Curiosamente, las estrellas dentro de un mismo disco pueden rotar en direcciones opuestas, lo que sugiere procesos dinámicos complejos como la relajación resonante vectorial o la influencia de un perturbador externo \cite{ali2020kinematic}.
+
+\subsection{La Paradoja de la Juventud}
+La existencia de estrellas jóvenes tan cerca de un SMBH plantea el dilema conocido como la "Paradoja de la Juventud". Las fuerzas de marea de Sgr A* son tan intensas que deberían haber impedido la formación estelar in situ al disgregar las nubes moleculares antes de que pudieran colapsar \cite{ciurlo2025sagittarius}. Teorías actuales sugieren que estas estrellas pudieron formarse en discos de gas masivos y densos que existieron en el pasado o ser el resultado de la captura y migración de sistemas binarios desintegrados por el agujero negro \cite{ciurlo2025sagittarius, ali2020kinematic}.
+
+\section{Metodología y Fuentes de Datos Astronómicos}
+
+Para el desarrollo de este proyecto, es fundamental el uso de datos precisos y validados por la comunidad científica internacional.
+
+\subsection{Acceso a catálogos mediante VizieR}
+Los datos orbitales y cinemáticos utilizados en los estudios de Gillessen et al. (2017) y Ali et al. (2020) están disponibles a través del servicio VizieR del Centro de Datos Astronómicos de Estrasburgo (CDS) \cite{ochsenbein2000vizier}. Estos catálogos proporcionan las posiciones, velocidades radiales y elementos orbitales necesarios para reproducir y analizar el comportamiento dinámico de las estrellas del cúmulo S \cite{vizier_gillessen2017, vizier_ali2020}.
+
+\subsection{Consideraciones sobre errores sistemáticos y estadísticos}
+El análisis orbital debe considerar tanto errores estadísticos derivados de las mediciones astrométricas como errores sistemáticos asociados a la definición del sistema de coordenadas de referencia. El uso de técnicas de \textit{bootstrapping} y el monitoreo de estrellas con trayectorias lineales como marcos de referencia permiten reducir las incertidumbres en la determinación de la masa de Sgr A* y la distancia $R_0$ \cite{gillessen2017update, ali2020kinematic}.
+
+\bibliographystyle{plainurl}
+\bibliography{bibliography}
+\end{document}
