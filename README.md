@@ -6,6 +6,8 @@
 
 * [An Update on Monitoring Stellar Orbits in the Galactic Center](https://arxiv.org/abs/1702.03155)
 * [Kinematic Structure of the Galactic Center S-cluster](https://arxiv.org/abs/2006.01454)
+* [Sagittarius A* - The Milky Way Supermassive Black Hole](https://arxiv.org/abs/2302.02431)
+
 
 ### Bases de datos
 
