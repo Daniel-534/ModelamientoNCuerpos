@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Si usas este trabajo, por favor cítalo como se indica."
+title: "Modelado N Cuerpos, Mecánica Celeste"
+abstract: >
+  Repositorio de trabajo para el modelado gravitacional de N cuerpos aplicado
+  a la dinámica estelar del Centro Galáctico.
+authors:
+  - family-names: "Soto Villada"
+    given-names: "Daniel"
+    affiliation: "Universidad de Antioquia"
+  - family-names: "Niño Murcia"
+    given-names: "Soleil Dayana"
+    affiliation: "Universidad de Antioquia"
+  - family-names: "Calle Muñoz"
+    given-names: "Sara"
+    affiliation: "Universidad de Antioquia"
+repository-code: "https://github.com/Daniel-534/ModelamientoNCuerpos"
+license: MIT
+year: 2026
+type: software
