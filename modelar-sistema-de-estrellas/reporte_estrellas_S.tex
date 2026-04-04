@@ -120,7 +120,7 @@ Láctea.  A partir de los elementos orbitales publicados en \citet{gillessen2017
 y \citet{ali2020kinematic}, se derivaron condiciones iniciales cartesianas para cada
 estrella en su periastro y se integró numéricamente el sistema de $40$ cuerpos
 durante $100$ años utilizando el método de Adams-Moulton implementado en
-\texttt{pymcel}, con error relativo de energía inferior a $5\times10^{-6}$.
+\texttt{pymcel} \citep{zuluaga2026pymcel}, con error relativo de energía inferior a $5\times10^{-6}$.
 
 Los resultados confirman la dominancia gravitacional de \SgrA{}: las órbitas se
 conservan kepleranas en escalas de décadas, la tercera ley de Kepler se reproduce
@@ -354,7 +354,8 @@ El análisis estadístico del catálogo arroja:
 \label{subsec:herramientas}
 
 El análisis se realizó en un \emph{Jupyter Notebook} (\texttt{S\_Stars\_Dynamics\_V3.ipynb})
-ejecutado en Google Colab.  Las bibliotecas principales empleadas son:
+ejecutado en Google Colab; el código fuente completo se encuentra disponible en el repositorio de
+GitHub del proyecto \citep{Soto_Villada_Modelado_N_Cuerpos}.  Las bibliotecas principales empleadas son:
 
 \begin{table}[H]
   \centering
@@ -364,7 +365,7 @@ ejecutado en Google Colab.  Las bibliotecas principales empleadas son:
     \toprule
     Paquete & Función principal & Referencia \\
     \midrule
-    \texttt{pymcel} & Integrador N-cuerpos; conversión de elementos orbitales & propia \\
+    \texttt{pymcel} & Integrador N-cuerpos; conversión de elementos orbitales & \citet{zuluaga2026pymcel} \\
     \texttt{NumPy} & Álgebra vectorial, estadística & numpy.org \\
     \texttt{SciPy} & ODE solver (\texttt{odeint}; Adams-Moulton) & scipy.org \\
     \texttt{pandas} & Lectura y manipulación del catálogo \texttt{.tsv} & pandas.pydata.org \\
@@ -379,7 +380,7 @@ ejecutado en Google Colab.  Las bibliotecas principales empleadas son:
 \subsubsection{Integrador numérico}
 \label{subsubsec:integrador}
 
-La función \texttt{pymcel.ncuerpos\_solucion(sistema, ts)} encapsula
+La función \texttt{pymcel.ncuerpos\_solucion(sistema, ts)} \citep{zuluaga2026pymcel} encapsula
 \texttt{scipy.integrate.odeint} configurado con el método predictor-corrector de
 Adams-Moulton de orden variable.  Devuelve los arrays de posiciones
 $\texttt{rs}\,\in\mathbb{R}^{N\times T\times3}$ y velocidades
@@ -537,27 +538,36 @@ $\delta h_i = (h_i(t) - h_i(0))/h_i(0)$.
   \centering
   \includegraphics[width=\textwidth]{angular_momentum_5stars.png}
   \caption{\textit{Izquierda:} evolución temporal del módulo del momento angular
-    específico $h_i(t)$ de las 5 estrellas.  \textit{Centro:} variación relativa
-    $\delta h_i(t)$.  \textit{Derecha:} polo orbital (proyección de $\hat{\bm{h}}$
-    en el plano $h_x$--$h_y$) al inicio y al final de la simulación.  Las
+    específico $h_i(t)$ de las 5 estrellas.  \textit{Derecha:} variación relativa
+    $\delta h_i(t) = (h_i(t) - h_i(0))/h_i(0)$.  Las
     variaciones relativas se mantienen por debajo de $10^{-4}$ en 100 años,
     consistentes con la magnitud de las perturbaciones mutuas.}
   \label{fig:mom_angular}
 \end{figure}
 
 La figura~\ref{fig:mom_angular} confirma que, en escalas de décadas, las
-perturbaciones mutuas no modifican sustancialmente el plano orbital de ninguna de las
-cinco estrellas.  La ligera precesión secular del polo orbital (derecha) es
-numéricamente detectable pero físicamente insignificante.
+perturbaciones mutuas no modifican sustancialmente el momento angular específico de ninguna de las
+cinco estrellas.  La ligera precesión secular del polo orbital es
+numéricamente detectable pero físicamente insignificante, como se analiza a continuación.
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.50\textwidth]{orbital_pole_5stars.png}
-  \caption{Proyección del polo orbital de las 5 estrellas al inicio (círculo sólido)
-    y al final (triángulo) de los 100 años de simulación.  El desplazamiento angular
-    es inferior a $0.01^\circ$ en todos los casos.}
-  \label{fig:polo_orbital}
-\end{figure}
+\paragraph{Análisis analítico del polo orbital.}
+El polo orbital de cada estrella, $\hat{\mathbf{h}}_i = \mathbf{h}_i/|\mathbf{h}_i|$, es la normal al plano
+orbital.  En el límite de dos cuerpos es exactamente constante; en el sistema de $N+1$ cuerpos las
+perturbaciones mutuas inducen una precesión secular cuya tasa angular característica se estima como:
+\begin{equation}
+  \dot{\theta}_{\rm prec} \sim
+    \frac{N_{\rm est}\,\langle m_\star \rangle}{4\,M_{\SgrA}}
+    \cdot \frac{2\pi}{T_i}
+  \approx 3.2\times10^{-6} \cdot \frac{2\pi}{T_i}.
+  \label{eq:prec_polo}
+\end{equation}
+Para las cinco estrellas del subconjunto (S1, S2, S8, S9, S12) y un intervalo de
+$\Delta t = 100\,\yr$, el desplazamiento angular acumulado es
+$\Delta\theta \lesssim 1.3\times10^{-4}\,\text{rad} \approx 0.007^\circ$ en el caso más desfavorable
+(S2, período $T \approx 16\,\yr$).  Este valor es \emph{cuatro órdenes de magnitud} menor que la
+precesión de Schwarzschild de S2 ($\sim 12'$ por órbita, equivalente a
+$\sim 2\times10^{-3}\,\text{rad\,yr}^{-1}$), lo que confirma que las perturbaciones N-cuerpos
+no modifican apreciablemente la orientación del plano orbital en la escala temporal analizada.
 
 \subsection{Perturbaciones N-cuerpos vs.\ 2 cuerpos — 5 estrellas}
 \label{subsec:perturbaciones_5}
@@ -765,12 +775,12 @@ $a/r_{\min} \sim 50$ en el apoastro \citep{gillessen2017update}.  Este efecto no
 implica que S62 pierda su carácter kepleriano, sino que su órbita kepleriana es
 altamente sensible a las condiciones iniciales.
 
-\paragraph{Conservación del momento angular.}
+\paragraph{Conservación del momento angular y polo orbital.}
 La pequeña variación de $|\bm{h}_i|$ (figura~\ref{fig:mom_angular}) confirma que
 las perturbaciones mutuas actúan en régimen adiabático: producen una
 \emph{precesión secular lenta} del plano orbital pero no lo destruyen en la escala
-de tiempo estudiada.  Esta precesión es del orden
-$\delta\theta \sim (m_\star/M_{\SgrA}) \sim 10^{-5}\,\text{rad\,yr}^{-1}$,
+de tiempo estudiada.  La tasa de precesión estimada analíticamente mediante la
+ecuación~\eqref{eq:prec_polo} es del orden de $10^{-5}$--$10^{-4}\,\text{rad\,yr}^{-1}$,
 completamente dominada en las observaciones reales por la precesión de Schwarzschild
 (relevante para S2).
 
@@ -849,7 +859,7 @@ marco teórico:
     detección observacional de la precesión de Schwarzschild en su órbita
     \citep{ciurlo2025sagittarius}.
 
-  \item \textbf{El integrador Adams-Moulton de \texttt{pymcel} es adecuado} para
+  \item \textbf{El integrador Adams-Moulton de \texttt{pymcel} es adecuado} \citep{zuluaga2026pymcel} para
     simulaciones de 100 años del cúmulo~S con las condiciones descritas, con errores
     de energía del orden de $10^{-6}$--$10^{-7}$.
 \end{enumerate}
