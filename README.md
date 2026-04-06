@@ -1,5 +1,7 @@
 # Modelado N cuerpos, Mecánica Celeste
-Soleil Niño, Daniel Soto, Sara Calle
+**Soleil Niño, Daniel Soto, Sara Calle**
+
+
 Repositorio de trabajo para el **modelado gravitacional de N‑cuerpos** aplicado a la **dinámica estelar del Centro Galáctico**, con énfasis en el **cúmulo de estrellas S** alrededor del agujero negro supermasivo **Sagittarius A\*** (Sgr A\*).
 
 Este proyecto integra (i) **teoría de mecánica celeste**, (ii) **datos observacionales (catálogos orbitales)** y (iii) **simulación numérica** (integración de EDOs y N‑cuerpos) para responder preguntas sobre la evolución orbital y el rol de perturbaciones estrella–estrella en un potencial dominado por un objeto central masivo.
