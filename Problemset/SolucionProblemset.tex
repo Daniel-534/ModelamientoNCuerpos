@@ -547,7 +547,7 @@ $$ Y_1 = \frac{dy}{dx} $$
     $$ f_1(x, Y_0, Y_1) = \frac{-ax Y_1 - b Y_0}{x^2} $$
 \end{enumerate}
 
-\section{Relevancia}
+\subsection{Relevancia}
 
 
 \begin{enumerate}
@@ -557,7 +557,420 @@ $$ Y_1 = \frac{dy}{dx} $$
 \end{enumerate}
 
 
+\section{Problema 8}
 
+Use el método de \textit{Leapfrog} para encontrar la solución numérica de las siguientes ecuaciones diferenciales, partiendo de las condiciones iniciales provistas. En cada caso haga un gráfico de la solución en un intervalo adecuadamente escogido:
+
+\textbf{a)}
+$$ \frac{d^2y}{dt^2} = -\frac{y}{t^2} $$
+con $$ y(1) = 1 $$ y $$ \frac{dy}{dt}(1) = 0 $$
+
+\textbf{b)}
+$$ y'' - 2y' + 3y = 0 $$
+con $$ y(0) = 1 $$ y $$ y'(0) = 0 $$
+
+\subsection{Solución}
+
+Insertar link a colab
+
+\section{Problema 9: Péndulo simple}
+
+La ecuación diferencial para el \textit{ángulo} $\theta$, que forma un péndulo con la vertical sobre el cual también actúa la fricción del aire, es de la forma:
+
+$$ \ddot{\theta}(t) + b\dot{\theta}(t) + c \sin \theta(t) = 0 $$
+
+donde $b$ y $c$ son constantes positivas. Escriba un código que solucione esta ecuación diferencial y proporcione en una misma gráfica las soluciones para $\theta(t)$ y $\dot{\theta}(t)$.,
+
+\subsection{Solución}
+
+
+\textbf{1. Definición del vector de estado}
+
+Consideramos un sistema de primer orden definiendo un vector de estado $\vec{Y}(t)$. Dado que la ecuación original es de segundo orden, el vector de estado debe poseer dos componentes: la función dependiente y su primera derivada.
+
+$$ Y_0(t) = \theta(t) $$
+$$ Y_1(t) = \dot{\theta}(t) $$
+
+Donde $Y_0$ representa la posición angular y $Y_1$ representa la velocidad angular del péndulo.
+
+\textbf{2. Construcción del sistema de ecuaciones de primer orden}
+
+Derivamos las componentes del vector de estado con respecto al tiempo para obtener el sistema dinámico:
+
+1. La derivada de la primera componente es, por definición, la segunda componente:
+$$ \dot{Y}_0 = \frac{d\theta}{dt} = Y_1 $$
+
+2. La derivada de la segunda componente corresponde a la aceleración angular $\ddot{\theta}$. Despejamos este término de la ecuación diferencial original del péndulo:
+$$ \ddot{\theta} = -b\dot{\theta} - c \sin \theta $$
+
+Sustituyendo las variables auxiliares $Y_0$ y $Y_1$ en esta expresión, obtenemos la segunda ecuación del sistema:
+$$ \dot{Y}_1 = -b Y_1 - c \sin(Y_0) $$
+
+El sistema reducido, listo para ser procesado por un algoritmo numérico, se expresa de forma compacta como:
+$$ \frac{d}{dt} \begin{pmatrix} Y_0 \\ Y_1 \end{pmatrix} = \begin{pmatrix} Y_1 \\ -b Y_1 - c \sin(Y_0) \end{pmatrix} $$
+
+
+\section{Problema 10: Cuadraturas}
+
+Asumiendo que $x$ y $y$ son funciones que dependen del tiempo $t$ (es decir, $x(t)$ y $y(t)$), reescriba cada una de las siguientes ecuaciones diferenciales en la forma de una única derivada total igualada a cero:
+$$ \frac{d}{dt} [ \dots ] = 0 $$
+Una vez reescrita, integre para encontrar la cantidad que se conserva (la constante de integración $C$).
+
+\textbf{a)}
+$$ \ddot{x} \sin(t) + \dot{x} \cos(t) = 0 $$
+
+\textbf{b)}
+$$ t\ddot{x} - \dot{x} = 0 $$
+
+\textbf{c)}
+$$ \ddot{x} + e^x = 0 $$
+
+\textbf{d)}
+$$ \dot{x} + tx^2 = 0 $$
+
+\textbf{e)}
+$$ \ddot{x} \cos(x) - (\dot{x})^2 \sin(x) = 0 $$
+
+
+\subsection{Solución}
+
+El método de las \textbf{cuadraturas} consiste en encontrar un \textit{factor integrante} o realizar una manipulación algebraica que permita expresar una ecuación diferencial como una derivada total respecto al tiempo igualada a cero. Este procedimiento identifica inmediatamente una \textit{constante de movimiento} o integral del sistema, reduciendo un problema dinámico a un sistema algebraico.
+
+A continuación, se resuelven analíticamente cada uno de los incisos propuestos en el \textbf{Problem Set}:
+
+\textbf{a)} 
+$$ \ddot{x} \sin(t) + \dot{x} \cos(t) = 0 $$
+
+En esta ecuación se reconoce de forma directa la regla de la derivada de un producto de funciones. Dado que la derivada de $ \sin(t) $ es $ \cos(t) $ y la derivada de $ \dot{x} $ es $ \ddot{x} $, la expresión corresponde a:
+$$ \frac{d}{dt} (\dot{x} \sin(t)) = \ddot{x} \sin(t) + \dot{x} \cos(t) $$
+
+Por lo tanto, la ecuación en su forma de cuadratura es:
+$$ \frac{d}{dt} [\dot{x} \sin(t)] = 0 $$
+
+Integrando directamente obtenemos la cantidad que se conserva:
+$$ \dot{x} \sin(t) = C $$
+
+\textbf{b)} 
+$$ t\ddot{x} - \dot{x} = 0 $$
+
+Para resolver esta ecuación mediante cuadraturas, buscamos un factor integrante que permita identificar una regla de derivación conocida. Dividiendo toda la expresión por $ t^2 $ (suponiendo $ t \neq 0 $):
+$$ \frac{t\ddot{x} - \dot{x}}{t^2} = 0 $$
+
+Se identifica que el lado izquierdo es la derivada de un cociente, específicamente:
+$$ \frac{d}{dt} \left( \frac{\dot{x}}{t} \right) = \frac{t\ddot{x} - \dot{x}}{t^2} $$
+
+La ecuación se reescribe como:
+$$ \frac{d}{dt} \left[ \frac{\dot{x}}{t} \right] = 0 $$
+
+La constante de integración resultante es:
+$$ \frac{\dot{x}}{t} = C $$
+
+\textbf{c)} 
+$$ \ddot{x} + e^x = 0 $$
+
+Este es un caso típico donde se utiliza la velocidad $ \dot{x} $ como factor integrante. Multiplicando ambos lados de la ecuación diferencial por $ \dot{x} $:
+$$ \dot{x}\ddot{x} + \dot{x}e^x = 0 $$
+
+Analizamos cada término analíticamente. El primer término es la derivada de la energía cinética: 
+$ \frac{d}{dt} \left(\frac{1}{2}\dot{x}^2\right) = \dot{x}\ddot{x} $. 
+
+El segundo término se obtiene aplicando la regla de la cadena: 
+$ \frac{d}{dt} (e^x) = e^x \dot{x} $. 
+
+Agrupando:
+$$ \frac{d}{dt} \left( \frac{1}{2}\dot{x}^2 + e^x \right) = 0 $$
+
+La cantidad conservada es:
+$$ \frac{1}{2}\dot{x}^2 + e^x = C $$
+
+\textbf{d)} 
+$$ \dot{x} + tx^2 = 0 $$
+
+Para separar las variables, dividimos por $ x^2 $ (asumiendo $ x \neq 0 $):
+$$ \frac{\dot{x}}{x^2} + t = 0 $$
+
+Reconocemos las antiderivadas. Para el primero:
+$ \frac{d}{dt} (-1/x) = \frac{\dot{x}}{x^2} $. 
+
+Para el segundo:
+$ \frac{d}{dt} (t^2/2) = t $. 
+
+Entonces:
+$$ \frac{d}{dt} \left[ -\frac{1}{x} + \frac{1}{2}t^2 \right] = 0 $$
+
+La integral de movimiento es:
+$$ -\frac{1}{x} + \frac{1}{2}t^2 = C $$
+
+\textbf{e)} 
+$$ \ddot{x} \cos(x) - (\dot{x})^2 \sin(x) = 0 $$
+
+Si consideramos la función $ \dot{x} \cos(x) $:
+$$ \frac{d}{dt} (\dot{x} \cos(x)) = \ddot{x} \cos(x) - \dot{x}^2 \sin(x) $$
+
+La ecuación se reduce a:
+$$ \frac{d}{dt} [\dot{x} \cos(x)] = 0 $$
+
+Integrando:
+$$ \dot{x} \cos(x) = C $$
+
+
+\section{Problema 11}
+
+Considere un sistema de $N$ cuerpos donde una masa $m_0$, en la posición $\vec{r}_0$, es la más masiva. Un cuerpo de masa $m_i$ en $\vec{r}_i$ sentirá el efecto gravitacional del cuerpo en $\vec{r}_0$ sumado al de las otras partículas que conforman el sistema, ubicadas en posiciones $\vec{r}_j$ (para $j = 1, 2, \dots, N$ tal que $j \neq i$). Demuestre que la energía potencial total sobre la partícula $m_i$ viene dada por la expresión:
+
+$$ U_i = -G \frac{m_i m_0}{r_{0i}} - G m_i \sum_{j=1, j \neq i, 0}^N m_j \left( \frac{1}{r_{ij}} - \frac{\vec{r}_{0i} \cdot \vec{r}_{0j}}{r_{0j}^3} \right) $$
+
+donde $\vec{r}_{ji} = \vec{r}_j - \vec{r}_i$.
+
+
+\subsection{Solución}
+
+
+Para demostrar esta identidad, debemos partir de las leyes dinámicas fundamentales en un sistema de referencia inercial y luego trasladar la descripción al sistema relativo del cuerpo central.
+
+\textbf{1. Ecuaciones de movimiento en el sistema inercial}
+
+Consideramos un sistema de $N$ cuerpos. La aceleración de la partícula $m_i$ y la del cuerpo central $m_0$ se determinan por la superposición de las fuerzas gravitatorias de todos los demás miembros del sistema. De acuerdo con la ley de gravitación universal de Newton:
+$$ \ddot{\vec{r}}_i = \frac{G m_0 (\vec{r}_0 - \vec{r}_i)}{r_{i0}^3} + \sum_{j \neq i, 0} \frac{G m_j (\vec{r}_j - \vec{r}_i)}{r_{ij}^3} $$
+$$ \ddot{\vec{r}}_0 = \frac{G m_i (\vec{r}_i - \vec{r}_0)}{r_{0i}^3} + \sum_{j \neq i, 0} \frac{G m_j (\vec{r}_j - \vec{r}_0)}{r_{0j}^3} $$
+
+Donde hemos definido las distancias mutuas como $r_{ab} = \|\vec{r}_b - \vec{r}_a\|$.
+
+\textbf{2. Transformación al sistema de referencia relativo}
+
+Definimos el vector de posición de la partícula $i$ relativo a $m_0$ como $\vec{r}_{0i} = \vec{r}_i - \vec{r}_0$. Para obtener la aceleración relativa, restamos las aceleraciones inerciales:
+$$ \ddot{\vec{r}}_{0i} = \ddot{\vec{r}}_i - \ddot{\vec{r}}_0 $$
+
+Utilizando la convención vectorial $\vec{r}_{ji} = \vec{r}_j - \vec{r}_i$ y reconociendo que $\vec{r}_0 - \vec{r}_i = -\vec{r}_{0i}$, sustituimos los términos:
+$$ \ddot{\vec{r}}_{0i} = \left( - \frac{G m_0 \vec{r}_{0i}}{r_{0i}^3} + \sum_{j \neq i, 0} \frac{G m_j \vec{r}_{ji}}{r_{ij}^3} \right) - \left( \frac{G m_i \vec{r}_{0i}}{r_{0i}^3} + \sum_{j \neq i, 0} \frac{G m_j \vec{r}_{0j}}{r_{0j}^3} \right) $$
+
+Agrupamos los términos dependientes de la interacción directa con el centro y aquellos debidos a la aceleración del sistema de referencia:
+$$ \ddot{\vec{r}}_{0i} = - \frac{G (m_0 + m_i) \vec{r}_{0i}}{r_{0i}^3} + \sum_{j \neq i, 0} G m_j \left( \frac{\vec{r}_{ji}}{r_{ij}^3} - \frac{\vec{r}_{0j}}{r_{0j}^3} \right) $$
+
+En el límite donde $m_i$ es una masa de prueba ($m_i \ll m_0$), el término de la masa total se aproxima a $m_0$.
+
+\textbf{3. Integración para obtener el potencial escalar}
+
+Buscamos una función de energía potencial $U_i$ tal que la fuerza efectiva sobre la partícula sea $m_i \ddot{\vec{r}}_{0i} = - \nabla_i U_i$, donde el gradiente se toma respecto a las coordenadas de la partícula $i$. Analizamos cada término por separado:
+
+\textbf{A. Término Kepleriano (Cuerpo central):}
+El potencial asociado a la atracción directa es simplemente el potencial de dos cuerpos. Aplicando el gradiente a la distancia recíproca:
+$$ - \nabla_i \left( - \frac{G m_i m_0}{r_{0i}} \right) = - \frac{G m_i m_0 \vec{r}_{0i}}{r_{0i}^3} $$
+
+\textbf{B. Término Directo de la Perturbación:}
+Para el término $1/r_{ij}$, usamos la definición $\vec{r}_{ji} = \vec{r}_j - \vec{r}_i$. Calculando la derivada parcial respecto a la posición de la partícula $i$:
+$$ \nabla_i \left( \frac{1}{r_{ij}} \right) = \frac{\vec{r}_{ji}}{r_{ij}^3} $$
+Por lo tanto:
+$$ - \nabla_i \left( - \frac{G m_i m_j}{r_{ij}} \right) = \frac{G m_i m_j \vec{r}_{ji}}{r_{ij}^3} $$
+
+\textbf{C. Término Indirecto (Aceleración del origen):}
+El término de aceleración indirecta es $\vec{r}_{0j} / r_{0j}^3$. Este vector no depende de las coordenadas de la partícula $i$, por lo que actúa como una constante bajo el operador $\nabla_i$. Utilizando la propiedad del gradiente del producto escalar $\nabla_i (\vec{r}_{0i} \cdot \vec{A}) = \vec{A}$:
+$$ \nabla_i \left( \vec{r}_{0i} \cdot \frac{\vec{r}_{0j}}{r_{0j}^3} \right) = \frac{\vec{r}_{0j}}{r_{0j}^3} $$
+En consecuencia:
+$$ - \nabla_i \left( G m_i m_j \frac{\vec{r}_{0i} \cdot \vec{r}_{0j}}{r_{0j}^3} \right) = - \frac{G m_i m_j \vec{r}_{0j}}{r_{0j}^3} $$
+
+\textbf{4. Síntesis de la expresión final}
+
+Sumando todas las componentes integradas y multiplicando por la masa $m_i$ para asegurar la consistencia dimensional, obtenemos la energía potencial total para la partícula $i$:
+$$ U_i = - \frac{G m_i m_0}{r_{0i}} - G m_i \sum_{j=1, j \neq i, 0}^N m_j \left( \frac{1}{r_{ij}} - \frac{\vec{r}_{0i} \cdot \vec{r}_{0j}}{r_{0j}^3} \right) $$
+
+Esta función describe completamente el pozo de potencial efectivo en el que se mueve la partícula $m_i$, incluyendo tanto la atracción \textit{Kepleriana} del sol (o cuerpo central) como la \textit{función perturbadora} de los demás planetas, corregida por la naturaleza no inercial del origen de coordenadas.
+
+
+\section{Problema 12}
+
+Cuando un sistema de $N$ cuerpos es dominado por un cuerpo más masivo que todos los demás (que identificaremos con el cuerpo $n$ con masa $m_n$), es posible escribir la ecuación de movimiento de cada partícula de una manera más conveniente, si se define la posición para cada partícula de la forma:
+$$ \vec{r}'_i = \vec{r}_i - \vec{r}_n $$
+
+a) Muestre que la energía potencial total del sistema de $N$ cuerpos se puede escribir en la forma:
+$$ U = G m_n \sum_{j=1}^{n-1} \frac{m_j}{r_{nj}} + U' $$
+donde $U' = \sum_{1 \leq i < j \leq n-1} \frac{G m_i m_j}{r_{ij}}$.
+
+b) Demuestre que la fuerza sobre la partícula $i$-ésima se puede escribir en la forma:
+$$ -\nabla_i U = -\nabla_i U' + \frac{G m_n m_i}{r_{in}^3} \vec{r}'_i $$
+
+c) Muestre que la ecuación de movimiento de la partícula $i$ se puede escribir como:
+$$ \ddot{\vec{r}}'_i + \frac{G(m_n + m_i)}{r_{in}^3} \vec{r}'_i = \frac{1}{m_i} \nabla_i U' - \sum_{j=1, j \neq i}^{n-1} \frac{G m_j}{r_{jn}^3} \vec{r}'_j $$
+
+d) Muestre que esta ecuación se puede a su vez expresar en la forma:
+$$ \ddot{\vec{r}}'_i + \frac{G(m_n + m_i)}{r_{in}^3} \vec{r}'_i = \sum_{j=1, j \neq i}^{n-1} m_j \nabla_i R_{ij} $$
+donde la función $R_{ij} = G \left( \frac{1}{r_{ij}} - \frac{\vec{r}'_i \cdot \vec{r}'_j}{r_{jn}^3} \right)$ se conoce como la \textit{función perturbadora}.
+
+
+\subsection{Solución}
+
+\textbf{Parte (a): Estructura de la energía potencial total}
+
+La energía potencial gravitatoria de un sistema de $N$ partículas es la suma de las energías de interacción de todos los pares posibles. Para un sistema con una masa central $m_n$, esta suma se puede descomponer analíticamente en dos contribuciones: la interacción de cada masa pequeña con el cuerpo central y la interacción mutua entre las masas pequeñas.
+
+$$ U = \sum_{j=1}^{n-1} \frac{G m_n m_j}{r_{nj}} + \sum_{1 \leq j < k \leq n-1} \frac{G m_j m_k}{r_{jk}} $$
+
+Definimos $U'$ como la energía potencial de interacción exclusivamente entre los $n-1$ cuerpos menores:
+$$ U' = \sum_{1 \leq j < k \leq n-1} \frac{G m_j m_k}{r_{jk}} $$
+
+Al sustituir esta definición, obtenemos la expresión requerida para el potencial total:
+$$ U = G m_n \sum_{j=1}^{n-1} \frac{m_j}{r_{nj}} + U' $$
+
+\textbf{Parte (b): Gradiente de la fuerza sobre la partícula $i$}
+
+Para obtener la fuerza neta, calculamos el negativo del gradiente de $U$ respecto a las coordenadas $\vec{r}_i$. Debido a que las posiciones de las otras partículas $j \neq i$ son independientes de $\vec{r}_i$ en este operador, la sumatoria del primer término solo sobrevive para el índice $j = i$:
+
+$$ -\nabla_i U = -\nabla_i \left( \frac{G m_n m_i}{r_{ni}} \right) - \nabla_i U' $$
+
+Analizamos analíticamente el primer gradiente. Dado que $r_{ni} = \|\vec{r}_i - \vec{r}_n\|$, y utilizando la regla de la cadena:
+$$ \nabla_i \left( \frac{1}{r_{ni}} \right) = -\frac{1}{r_{ni}^3} (\vec{r}_i - \vec{r}_n) = -\frac{\vec{r}'_i}{r_{in}^3} $$
+
+Sustituyendo este resultado en la expresión de la fuerza:
+$$ -\nabla_i U = -G m_n m_i \left( -\frac{\vec{r}'_i}{r_{in}^3} \right) - \nabla_i U' = \frac{G m_n m_i}{r_{in}^3} \vec{r}'_i - \nabla_i U' $$
+
+\textbf{Parte (c): Derivación de la ecuación de movimiento relativo}
+
+En un marco inercial, las aceleraciones del cuerpo $i$ y del cuerpo central $n$ son:
+$$ \ddot{\vec{r}}_i = \frac{G m_n (\vec{r}_n - \vec{r}_i)}{r_{ni}^3} + \sum_{j \neq i, n} \frac{G m_j (\vec{r}_j - \vec{r}_i)}{r_{ij}^3} $$
+$$ \ddot{\vec{r}}_n = \frac{G m_i (\vec{r}_i - \vec{r}_n)}{r_{in}^3} + \sum_{j \neq i, n} \frac{G m_j (\vec{r}_j - \vec{r}_n)}{r_{jn}^3} $$
+
+Calculamos la aceleración relativa $\ddot{\vec{r}}'_i = \ddot{\vec{r}}_i - \ddot{\vec{r}}_n$:
+$$ \ddot{\vec{r}}'_i = \left( -\frac{G m_n \vec{r}'_i}{r_{in}^3} + \sum_{j \neq i, n} \frac{G m_j \vec{r}_{ji}}{r_{ij}^3} \right) - \left( \frac{G m_i \vec{r}'_i}{r_{in}^3} + \sum_{j \neq i, n} \frac{G m_j \vec{r}'_j}{r_{jn}^3} \right) $$
+
+Agrupando los términos proporcionales a $\vec{r}'_i$:
+$$ \ddot{\vec{r}}'_i = -\frac{G(m_n + m_i)}{r_{in}^3} \vec{r}'_i + \sum_{j \neq i, n} \frac{G m_j \vec{r}_{ji}}{r_{ij}^3} - \sum_{j \neq i, n} \frac{G m_j \vec{r}'_j}{r_{jn}^3} $$
+
+Reconociendo que $\sum G m_j \vec{r}_{ji}/r_{ij}^3 = \frac{1}{m_i} \nabla_i U'$, obtenemos la ecuación de movimiento relativo:
+$$ \ddot{\vec{r}}'_i + \frac{G(m_n + m_i)}{r_{in}^3} \vec{r}'_i = \frac{1}{m_i} \nabla_i U' - \sum_{j \neq i, n} \frac{G m_j}{r_{jn}^3} \vec{r}'_j $$
+
+\textbf{Parte (d): Identificación de la función perturbadora $R_{ij}$}
+
+Buscamos expresar el lado derecho de la ecuación anterior como el gradiente de una función escalar $R_{ij}$. Definimos:
+$$ R_{ij} = G \left( \frac{1}{r_{ij}} - \frac{\vec{r}'_i \cdot \vec{r}'_j}{r_{jn}^3} \right) $$
+
+Calculamos el gradiente $\nabla_i R_{ij}$ término a término:
+1. $\nabla_i (1/r_{ij}) = \vec{r}_{ji} / r_{ij}^3$ (por derivación de la distancia recíproca).
+2. $\nabla_i (\vec{r}'_i \cdot \vec{r}'_j / r_{jn}^3) = \vec{r}'_j / r_{jn}^3$, dado que $\vec{r}'_j$ no depende de $\vec{r}_i$.
+
+Combinando ambos:
+$$ \nabla_i R_{ij} = G \left( \frac{\vec{r}_{ji}}{r_{ij}^3} - \frac{\vec{r}'_j}{r_{jn}^3} \right) $$
+
+Multiplicando por $m_j$ y sumando sobre todos los perturbadores $j$, recuperamos exactamente el término de perturbación de la parte (c):
+$$ \sum_{j \neq i, n} m_j \nabla_i R_{ij} = \sum_{j \neq i, n} G m_j \left( \frac{\vec{r}_{ji}}{r_{ij}^3} - \frac{\vec{r}'_j}{r_{jn}^3} \right) $$
+
+Por lo tanto, la ecuación de movimiento queda finalmente expresada en términos de la \textit{función perturbadora}:
+$$ \ddot{\vec{r}}'_i + \frac{G(m_n + m_i)}{r_{in}^3} \vec{r}'_i = \sum_{j=1, j \neq i}^{n-1} m_j \nabla_i R_{ij} $$
+
+
+\section{Problema 13}
+
+En un sistema de $N$ cuerpos, la fuerza que actúa sobre el $i$-ésimo es $\vec{F}_i$. Muestre que 
+$$ \frac{1}{2} \ddot{I} = 2T + \sum_i \vec{r}_i \cdot \vec{F}_i $$
+donde $I = \sum_i m_i |\vec{r}_i|^2$ y $T = \frac{1}{2} \sum_i m_i (\dot{\vec{r}}_i)^2$ son el momento de inercia y la energía cinética, respectivamente. Además:
+
+a) Demuestre que el virial de un sistema de $N$ cuerpos es igual a su energía potencial y, a partir de ello, deduzca la identidad de Lagrange–Jacobi. ¿Qué interpretación permite dicha identidad?
+
+\subsection{Solución}
+
+\textbf{1. Derivación del momento de inercia}
+
+Partimos de la definición del momento de inercia escalar $I$ del sistema de $N$ partículas respecto al origen de coordenadas:
+$$ I = \sum_{i=1}^N m_i |\vec{r}_i|^2 = \sum_{i=1}^N m_i (\vec{r}_i \cdot \vec{r}_i) $$
+
+Calculamos la primera derivada temporal de $I$:
+$$ \dot{I} = \frac{d}{dt} \sum_{i=1}^N m_i (\vec{r}_i \cdot \vec{r}_i) = \sum_{i=1}^N m_i (2 \vec{r}_i \cdot \dot{\vec{r}}_i) $$
+$$ \dot{I} = 2 \sum_{i=1}^N m_i \vec{r}_i \cdot \dot{\vec{r}}_i $$
+
+Definimos la cantidad escalar $G$ como la suma de los productos escalares entre la posición y el momentum lineal de cada partícula:
+$$ G = \sum_{i=1}^N m_i \vec{r}_i \cdot \dot{\vec{r}}_i $$
+Por lo tanto, se cumple la relación $\dot{I} = 2G$. Procedemos a calcular la segunda derivada temporal de $I$, que es equivalente a $2\dot{G}$:
+$$ \ddot{I} = 2 \dot{G} = 2 \frac{d}{dt} \sum_{i=1}^N m_i \vec{r}_i \cdot \dot{\vec{r}}_i = 2 \sum_{i=1}^N m_i (\dot{\vec{r}}_i \cdot \dot{\vec{r}}_i + \vec{r}_i \cdot \ddot{\vec{r}}_i) $$
+
+\textbf{2. Identificación de la energía cinética y las fuerzas}
+
+Expandimos la sumatoria anterior:
+$$ \ddot{I} = 2 \sum_{i=1}^N m_i \dot{\vec{r}}_i^2 + 2 \sum_{i=1}^N \vec{r}_i \cdot (m_i \ddot{\vec{r}}_i) $$
+
+Reconocemos que la energía cinética total $T$ (denotada como $K$ en algunas fuentes) es:
+$$ T = \frac{1}{2} \sum_{i=1}^N m_i \dot{\vec{r}}_i^2 \implies 2 \sum_{i=1}^N m_i \dot{\vec{r}}_i^2 = 4T $$
+
+Por la segunda ley de Newton, $m_i \ddot{\vec{r}}_i = \vec{F}_i$, donde $\vec{F}_i$ es la fuerza neta sobre la partícula $i$. Sustituyendo estas relaciones en la expresión de $\ddot{I}$:
+$$ \ddot{I} = 4T + 2 \sum_{i=1}^N \vec{r}_i \cdot \vec{F}_i $$
+
+Dividiendo toda la expresión por 2, obtenemos la relación solicitada en la primera parte del enunciado:
+$$ \frac{1}{2} \ddot{I} = 2T + \sum_{i=1}^N \vec{r}_i \cdot \vec{F}_i $$
+
+\textbf{3. Demostración de la equivalencia entre el virial y la energía potencial}
+
+El término $V = \sum \vec{r}_i \cdot \vec{F}_i$ se denomina \textit{virial} del sistema. En un sistema gobernado exclusivamente por la gravitación mutua, la fuerza neta sobre la partícula $i$ deriva de la energía potencial total $U$:
+$$ \vec{F}_i = -\frac{\partial U}{\partial \vec{r}_i} $$
+
+La energía potencial gravitatoria de $N$ cuerpos se define como:
+$$ U = -\frac{1}{2} \sum_{i} \sum_{j \neq i} \frac{G m_i m_j}{r_{ij}} $$
+
+Analíticamente, $U$ es una función homogénea de las coordenadas de orden $k = -1$. De acuerdo con el \textbf{Teorema de Euler para funciones homogéneas}, si una función $f$ es de grado $k$, entonces $\sum \vec{r}_i \cdot \nabla_i f = kf$. Aplicando esto al potencial gravitatorio:
+$$ \sum_{i=1}^N \vec{r}_i \cdot \frac{\partial U}{\partial \vec{r}_i} = (-1) U = -U $$
+
+Sustituyendo la fuerza en la definición del virial:
+$$ V = \sum_{i=1}^N \vec{r}_i \cdot \left( -\frac{\partial U}{\partial \vec{r}_i} \right) = - \sum_{i=1}^N \vec{r}_i \cdot \frac{\partial U}{\partial \vec{r}_i} = -(-U) = U $$
+Esto demuestra que el virial de un sistema de $N$ cuerpos es igual a su energía potencial gravitatoria.
+
+\textbf{4. Deducción de la Identidad de Lagrange-Jacobi}
+
+Retomamos la expresión $\dot{G} = 2T + V$. Sustituyendo el resultado del virial ($V=U$):
+$$ \dot{G} = 2T + U $$
+
+Utilizando la ley de conservación de la energía mecánica total $E = T + U$, podemos expresar la identidad en términos de la energía total:
+$$ \dot{G} = 2T + (E - T) = T + E $$
+
+En términos del momento de inercia ($\ddot{I} = 2\dot{G}$):
+$$ \ddot{I} = 2(2T + U) = 4T + 2U $$
+Estas expresiones constituyen la \textbf{Identidad de Lagrange-Jacobi}.
+
+\textbf{5. Interpretación de la identidad}
+
+La identidad de Lagrange-Jacobi permite estudiar la estabilidad y la naturaleza ligada de un sistema de $N$ cuerpos sin necesidad de resolver las ecuaciones de movimiento individuales:
+
+\begin{itemize}
+    \item \textbf{Sistemas disgregados ($E \geq 0$):} Dado que $T \geq 0$, si la energía total es positiva o nula, entonces $\dot{G} = T + E$ será siempre positiva. Esto implica que $G$ y, por ende, el momento de inercia $I$, crecerán indefinidamente con el tiempo. El sistema tenderá a expandirse y sus componentes se alejarán entre sí de forma ilimitada.
+    \item \textbf{Sistemas ligados ($E < 0$):} Para que un sistema sea ligado (es decir, que las distancias entre partículas permanezcan acotadas), es una condición \textbf{necesaria} que la energía total sea negativa. Solo bajo esta condición es posible que $\dot{G}$ tome valores que permitan que el sistema no se disgregue.
+    \item \textbf{Estado de equilibrio (Teorema del Virial):} Si el sistema es estable y promediamos la identidad en un intervalo de tiempo muy largo ($\langle \dot{G} \rangle \to 0$), obtenemos el Teorema del Virial: $2\langle T \rangle + \langle U \rangle = 0$, lo que implica que en promedio la energía cinética es la mitad del valor absoluto de la energía potencial.
+\end{itemize}
+
+
+\subsection{Solución}
+
+\textbf{Deducción analítica del Teorema del Virial}
+
+Para deducir el teorema del virial, partimos de la \textbf{identidad de Lagrange-Jacobi} obtenida en el inciso anterior, la cual relaciona la derivada temporal de la función escalar $G$ con la energía cinética $T$ y la energía potencial $U$ del sistema:
+$$ \dot{G} = 2K + U $$
+donde $G = \sum_{i=1}^N m_i \vec{r}_i \cdot \dot{\vec{r}_i}$.
+
+El procedimiento matemático consiste en calcular el \textbf{promedio temporal asintótico} de esta identidad. Definimos el promedio temporal de una función física $f(t)$ en un intervalo de tiempo $T$ como:
+$$ \langle f \rangle = \lim_{T \to \infty} \frac{1}{T} \int_0^T f(t) dt $$
+
+Aplicamos este operador de promedio a ambos lados de la identidad de Lagrange-Jacobi:
+$$ \langle \dot{G} \rangle = \langle 2K + U \rangle = 2\langle K \rangle + \langle U \rangle $$
+
+Analizamos analíticamente el término del lado izquierdo utilizando el \textbf{teorema fundamental del cálculo}:
+$$ \langle \dot{G} \rangle = \lim_{T \to \infty} \frac{1}{T} \int_0^T \frac{dG}{dt} dt = \lim_{T \to \infty} \frac{G(T) - G(0)}{T} $$
+
+Para que el sistema sea considerado un \textbf{sistema ligado}, las posiciones y las velocidades de todas las partículas deben permanecer acotadas en el tiempo. Esto implica que la función $G(t)$, que depende linealmente de las posiciones y los momentos, también está acotada entre un valor mínimo y uno máximo ($G_{min} \leq G(t) \leq G_{max}$). Bajo esta condición de estabilidad, al evaluar el límite cuando $T \to \infty$:
+$$ \lim_{T \to \infty} \frac{G(T) - G(0)}{T} \leq \lim_{T \to \infty} \frac{G_{max} - G_{min}}{T} = 0 $$
+
+Al anularse el promedio de la derivada de $G$, la identidad se reduce a la forma fundamental del \textbf{Teorema del Virial}:
+$$ 2\langle K \rangle + \langle U \rangle = 0 $$
+O equivalentemente:
+$$ \langle K \rangle = -\frac{1}{2} \langle U \rangle $$
+
+Podemos relacionar este resultado con la \textbf{energía mecánica total} $E = K + U$. Tomando el promedio temporal de la energía y sustituyendo la relación del virial:
+$$ E = \langle K \rangle + \langle U \rangle = \langle K \rangle - 2\langle K \rangle = -\langle K \rangle $$
+Dado que $E$ es una constante de movimiento, se concluye que $E = -\langle K \rangle$.
+
+\textbf{Interpretación del Teorema del Virial}
+
+La interpretación de este teorema proporciona información crucial sobre la naturaleza y estabilidad de los sistemas de $N$ cuerpos:
+
+\begin{itemize}
+    \item \textbf{Estado de equilibrio dinámico:} En un sistema astronómico ligado (como un sistema planetario o un cúmulo de estrellas), la energía cinética promedio es exactamente igual a la mitad del valor absoluto de la energía potencial promedio. Esto representa un balance entre la tendencia del sistema a dispersarse (energía cinética) y la tendencia a colapsar (energía potencial atractiva).
+    \item \textbf{Condición de ligadura:} Para que el teorema sea aplicable, el sistema debe ser estable y sus coordenadas deben estar acotadas. Esto refuerza que la energía total $E$ debe ser negativa ($E < 0$), ya que la energía cinética $K$ es siempre positiva y $E = -\langle K \rangle$.
+    \item \textbf{Estimación de masas:} El teorema permite calcular la masa total de un sistema a partir de observables cinemáticos. Si se conoce la dispersión de velocidades (relacionada con $\langle K \rangle$) y el tamaño característico del sistema (relacionado con $\langle U \rangle$), es posible deducir la masa que mantiene al sistema ligado.
+\end{itemize}
 
 
 
